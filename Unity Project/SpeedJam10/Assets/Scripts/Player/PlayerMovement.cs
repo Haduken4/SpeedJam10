@@ -1,4 +1,4 @@
-using Unity.Mathematics;
+﻿using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -10,22 +10,67 @@ public class PlayerMovement : MonoBehaviour
     public int CurrentLane = 1; // 0=left, 1=center, 2=right
     public float3 SplinePositionOffset = Vector3.zero;
 
+    public float JumpStrength = 9.0f;
+    public float GravityStrength = -9.81f;
+    private float jumpOffset = 0.0f;
+    private float yVel = 0.0f;
+
     [Header("Spline Reference")]
     public SplineContainer PathSpline;
 
     private float splinePosition = 0f; // 0 to 1 along the spline
     private float laneOffset = 0f;
 
+    [Header("Animation")]
+    private Animator anim;
+
     public float GetSplinePosition()
     {
         return splinePosition;
     }
 
+    public bool IsJumping()
+    {
+        return yVel != 0.0f || jumpOffset != 0.0f;
+    }
+
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
+
     void Update()
     {
+        HandleJumping();
         MoveAlongSpline();
         HandleLaneSwitching();
         UpdatePosition();
+    }
+
+    void HandleJumping()
+    {
+        if (anim)
+        {
+            anim.SetFloat("Blend", IsJumping() ? 1.0f : 0.0f);
+        }
+
+        if (jumpOffset == 0.0f && yVel == 0.0f)
+        {
+            if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+            {
+                yVel = JumpStrength;
+            }
+
+            return;
+        }
+
+        yVel += GravityStrength * Time.deltaTime;
+        jumpOffset += yVel * Time.deltaTime;
+        if(jumpOffset <= 0.0f)
+        {
+            jumpOffset = 0.0f;
+            yVel = 0.0f;
+        }
     }
 
     void MoveAlongSpline()
@@ -66,6 +111,8 @@ public class PlayerMovement : MonoBehaviour
         position += right * laneOffset;
 
         position += SplinePositionOffset;
+
+        position.y += jumpOffset;
 
         // Update transform
         transform.position = position;

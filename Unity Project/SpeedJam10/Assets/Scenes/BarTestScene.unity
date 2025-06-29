@@ -271,6 +271,8 @@ MonoBehaviour:
     x: 0
     y: 0.5
     z: 0
+  JumpStrength: 3
+  GravityStrength: -9.81
   PathSpline: {fileID: 2010417103}
 --- !u!1 &104333339
 GameObject:
