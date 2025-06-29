@@ -54,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1122
+  spritePixelsToUnits: 1267
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -106,8 +106,8 @@ TextureImporter:
       name: PlayerRun_04_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 607
+        x: 47
+        y: 625
         width: 13
         height: 26
       alignment: 0
@@ -128,10 +128,10 @@ TextureImporter:
       name: PlayerRun_04_1
       rect:
         serializedVersion: 2
-        x: 5
-        y: 38
+        x: 49
+        y: 66
         width: 490
-        height: 1063
+        height: 1053
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -14,9 +14,6 @@ TextureImporter:
   - first:
       213: -3453967602436166015
     second: PlayerRun_05_3
-  - first:
-      213: 4303353399750052828
-    second: PlayerRun_05_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -63,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1122
+  spritePixelsToUnits: 1267
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -115,8 +112,8 @@ TextureImporter:
       name: PlayerRun_05_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 603
+        x: 46
+        y: 621
         width: 6
         height: 6
       alignment: 0
@@ -137,8 +134,8 @@ TextureImporter:
       name: PlayerRun_05_1
       rect:
         serializedVersion: 2
-        x: 3
-        y: 607
+        x: 47
+        y: 625
         width: 13
         height: 26
       alignment: 0
@@ -159,10 +156,10 @@ TextureImporter:
       name: PlayerRun_05_2
       rect:
         serializedVersion: 2
-        x: 6
-        y: 38
+        x: 50
+        y: 108
         width: 470
-        height: 1084
+        height: 1033
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,10 +178,10 @@ TextureImporter:
       name: PlayerRun_05_3
       rect:
         serializedVersion: 2
-        x: 9
-        y: 41
+        x: 53
+        y: 66
         width: 35
-        height: 34
+        height: 27
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,28 +192,6 @@ TextureImporter:
       bones: []
       spriteID: 18ea517f3ca0110d0800000000000000
       internalID: -3453967602436166015
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerRun_05_4
-      rect:
-        serializedVersion: 2
-        x: 12
-        y: 41
-        width: 17
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cdb421fed1598bb30800000000000000
-      internalID: 4303353399750052828
       vertices: []
       indices: 
       edges: []
@@ -239,7 +214,6 @@ TextureImporter:
       PlayerRun_05_1: -1158626817589245878
       PlayerRun_05_2: -6837194812258306175
       PlayerRun_05_3: -3453967602436166015
-      PlayerRun_05_4: 4303353399750052828
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
