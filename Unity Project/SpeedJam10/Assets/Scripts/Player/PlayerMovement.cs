@@ -15,14 +15,20 @@ public class PlayerMovement : MonoBehaviour
     private float jumpOffset = 0.0f;
     private float yVel = 0.0f;
 
+    public float SlideLength = 1.0f;
+    public float SlideCooldown = 0.2f;
+    private float slideTimer = 0.0f;
+    private float slideCD = 0.0f;
+
     [Header("Spline Reference")]
     public SplineContainer PathSpline;
 
     private float splinePosition = 0f; // 0 to 1 along the spline
     private float laneOffset = 0f;
 
-    [Header("Animation")]
+
     private Animator anim;
+    private PlayerCollision playerCollision;
 
     public float GetSplinePosition()
     {
@@ -34,31 +40,65 @@ public class PlayerMovement : MonoBehaviour
         return yVel != 0.0f || jumpOffset != 0.0f;
     }
 
+    public bool IsSliding()
+    {
+        return slideTimer > 0.0f;
+    }
+
     private void Start()
     {
         anim = GetComponent<Animator>();
+        playerCollision = GetComponent<PlayerCollision>();
     }
 
     void Update()
     {
+        HandleSliding();
         HandleJumping();
         MoveAlongSpline();
         HandleLaneSwitching();
         UpdatePosition();
     }
 
+    void HandleSliding()
+    {
+        if (IsSliding())
+        {
+            slideTimer -= Time.deltaTime;
+            if (slideTimer <= 0.0f)
+            {
+                playerCollision.SetDefaultCollider();
+                anim.SetTrigger("Run");
+            }
+
+            return;
+        }
+
+        slideCD -= Time.deltaTime;
+
+        if (!IsJumping() && slideCD <= 0.0f && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftShift)))
+        {
+            slideTimer = SlideLength;
+            slideCD = SlideCooldown;
+            playerCollision.SetSlideCollider();
+            anim.SetTrigger("Slide");
+        }
+    }
+
     void HandleJumping()
     {
-        if (anim)
-        {
-            anim.SetFloat("Blend", IsJumping() ? 1.0f : 0.0f);
-        }
+        //if (anim)
+        //{
+        //    anim.SetFloat("Blend", IsJumping() ? 1.0f : 0.0f);
+        //}
 
         if (jumpOffset == 0.0f && yVel == 0.0f)
         {
-            if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+            if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && !IsSliding())
             {
                 yVel = JumpStrength;
+                playerCollision.SetJumpCollider();
+                anim.SetTrigger("Jump");
             }
 
             return;
@@ -70,6 +110,8 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpOffset = 0.0f;
             yVel = 0.0f;
+            playerCollision.SetDefaultCollider();
+            anim.SetTrigger("Run");
         }
     }
 
