@@ -27,6 +27,7 @@ public class FinalDoorScript : MonoBehaviour
     {
         if (winning)
         {
+            winTimer += Time.deltaTime;
             if(winTimer <= WinMonsterFadeTime)
             {
                 SpriteRenderer msr = Monster.GetComponent<SpriteRenderer>();
@@ -37,7 +38,7 @@ public class FinalDoorScript : MonoBehaviour
             
             if(winTimer <= WinFadeTime)
             {
-                FadeObject.color = new Color(0.9f, 0.92f, 0.95f, winTimer / WinFadeTime);
+                FadeObject.color = new Color(0.75f, 0.77f, 0.8f, (winTimer / WinFadeTime) * 0.9f);
             }
 
             if (winTimer >= WinMenuTime && WinMenu != null)
@@ -67,5 +68,6 @@ public class FinalDoorScript : MonoBehaviour
         winning = true;
         winTimer = 0.0f;
         Monster.enabled = false;
+        Player.enabled = false;
     }
 }

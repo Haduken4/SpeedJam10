@@ -267,9 +267,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dae00460613a5a4e83ccb421ade7965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 3
-  StartSpeed: 2
-  Acceleration: 5
+  MaxSpeed: 20
+  StartSpeed: 20
+  Acceleration: 20
   XSpeed: 3
   XLeftBoundary: 0.8
   XRightBoundary: 1
@@ -500,7 +500,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LapText: {fileID: 1947340374}
-  LapsToWin: 3
+  FadeObject: {fileID: 1400075714}
+  Monster: {fileID: 2097130119}
+  Player: {fileID: 23175103}
+  WinFadeTime: 2
+  WinMonsterFadeTime: 1
+  WinMenuTime: 3
+  WinMenu: {fileID: 0}
+  LapsToWin: 1
 --- !u!65 &130247016
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -520,7 +527,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.99999994, y: 0.5263671, z: 0.2}
+  m_Size: {x: 0.99999994, y: 0.5263671, z: 0.4}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &130247017
 SpriteRenderer:
@@ -2442,7 +2449,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947340373}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcc850e927c87c543b974756b9f717ab, type: 3}
   m_Name: 
