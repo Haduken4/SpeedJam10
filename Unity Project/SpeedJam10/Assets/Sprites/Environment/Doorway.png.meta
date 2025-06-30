@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 6d2158c8b1f67d9408fa2d150db9e805
+guid: f28c230cbc73ffb44b2eeea485f37753
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8854152717735475093
-    second: Walls 2_0
+      213: 2852755156950162345
+    second: Doorway_0
+  - first:
+      213: 6699263412345903897
+    second: Doorway_1
+  - first:
+      213: 7938835558447806449
+    second: Doorway_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1685
+  spritePixelsToUnits: 4105
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Walls 2_0
+      name: Doorway_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1396
-        height: 1685
+        width: 1773
+        height: 2160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +134,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 597bea74cf440ea70800000000000000
-      internalID: 8854152717735475093
+      spriteID: 9ab9d2163b5079720800000000000000
+      internalID: 2852755156950162345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doorway_1
+      rect:
+        serializedVersion: 2
+        x: 1741
+        y: 1591
+        width: 623
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91b16ad449098fc50800000000000000
+      internalID: 6699263412345903897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Doorway_2
+      rect:
+        serializedVersion: 2
+        x: 2328
+        y: 0
+        width: 1777
+        height: 2160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f7758fe0e86c2e60800000000000000
+      internalID: 7938835558447806449
       vertices: []
       indices: 
       edges: []
@@ -148,7 +198,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Walls 2_0: 8854152717735475093
+      Doorway_0: 2852755156950162345
+      Doorway_1: 6699263412345903897
+      Doorway_2: 7938835558447806449
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

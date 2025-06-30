@@ -27,14 +27,6 @@ public class Obstacle : MonoBehaviour
 
     void Start()
     {
-        if(StartFromWorldPos && MyPath)
-        {
-            SplineUtility.GetNearestPoint(MyPath.Spline, transform.position, out float3 nearest, out float t);
-            MyPath.Evaluate(t, out float3 pos, out float3 dir, out float3 up);
-            transform.position = pos + (float3)PathOffset;
-            transform.rotation = Quaternion.LookRotation(dir, up);
-            progress = t;
-        }
     }
 
     // Update is called once per frame

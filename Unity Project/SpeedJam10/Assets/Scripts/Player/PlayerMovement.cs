@@ -10,9 +10,10 @@ public class PlayerMovement : MonoBehaviour
     public float StartSpeed = 10f;
     public float Acceleration = 5.0f;
     public float XSpeed = 5.0f;
-    public float XBoundary = 1.0f;
+    public float XLeftBoundary = 1.0f;
+    public float XRightBoundary = 1.0f;
     public float3 SplinePositionOffset = Vector3.zero;
-    float currMaxSpeed = 10.0f;
+    float currMaxSpeed = 0.0f;
     float currSpeed = 0.0f;
 
     public float JumpStrength = 9.0f;
@@ -50,7 +51,17 @@ public class PlayerMovement : MonoBehaviour
         return slideTimer > 0.0f;
     }
 
-    private void Start()
+    public float GetMaxSpeed()
+    {
+        return currMaxSpeed;
+    }
+
+    public void SetMaxSpeed(float newMaxSpeed)
+    {
+        currMaxSpeed = newMaxSpeed;
+    }
+
+    private void Awake()
     {
         anim = GetComponent<Animator>();
         playerCollision = GetComponent<PlayerCollision>();
@@ -131,13 +142,13 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleLaneSwitching()
     {
-        if (Input.GetKey(KeyCode.A) && xOffset > -XBoundary)
+        if (Input.GetKey(KeyCode.A) && xOffset > -XLeftBoundary)
         {
-            xOffset = Mathf.Max(xOffset - (XSpeed * Time.deltaTime), -XBoundary);
+            xOffset = Mathf.Max(xOffset - (XSpeed * Time.deltaTime), -XLeftBoundary);
         }
-        else if (Input.GetKey(KeyCode.D) && xOffset < XBoundary)
+        else if (Input.GetKey(KeyCode.D) && xOffset < XRightBoundary)
         {
-            xOffset = Mathf.Min(xOffset + (XSpeed * Time.deltaTime), XBoundary);
+            xOffset = Mathf.Min(xOffset + (XSpeed * Time.deltaTime), XRightBoundary);
         }
     }
 
@@ -163,6 +174,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.name);
         if (other.GetComponent<Obstacle>())
         {
             anim.SetTrigger("Stumble");
