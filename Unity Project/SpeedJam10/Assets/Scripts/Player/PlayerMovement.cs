@@ -29,6 +29,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("Spline Reference")]
     public SplineContainer PathSpline;
 
+    [Header("Audio")]
+    public AudioPlayer SlidePlayer = null;
+    public AudioPlayer JumpStartPlayer = null;
+    public AudioPlayer JumpLandPlayer = null;
+    public AudioPlayer HitPlayer = null;
+
     private float splinePosition = 0f; // 0 to 1 along the spline
     private float xOffset = 0f;
 
@@ -110,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
             slideCD = SlideCooldown;
             playerCollision.SetSlideCollider();
             anim.SetTrigger("Slide");
+            SlidePlayer.PlayAudio();
         }
     }
 
@@ -122,6 +129,7 @@ public class PlayerMovement : MonoBehaviour
                 yVel = JumpStrength;
                 playerCollision.SetJumpCollider();
                 anim.SetTrigger("Jump");
+                JumpStartPlayer.PlayAudio();
             }
 
             return;
@@ -135,6 +143,7 @@ public class PlayerMovement : MonoBehaviour
             yVel = 0.0f;
             playerCollision.SetDefaultCollider();
             anim.SetTrigger("Run");
+            JumpLandPlayer.PlayAudio();
         }
     }
 
@@ -189,6 +198,7 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetTrigger("Stumble");
             currSpeed = 0.0f;
+            HitPlayer.PlayAudio();
         }
     }
 }

@@ -12,6 +12,7 @@ public class FinalDoorScript : MonoBehaviour
     public float WinMenuTime = 3.0f;
     public GameObject WinMenu = null;
     public int LapsToWin = 3;
+    public float LapSpeedIncrease = 1.0f;
 
     bool winning = false;
     float winTimer = 0.0f;
@@ -44,6 +45,7 @@ public class FinalDoorScript : MonoBehaviour
             if (winTimer >= WinMenuTime && WinMenu != null)
             {
                 WinMenu.SetActive(true);
+                Time.timeScale = 0.0f;
                 this.enabled = false;
             }
         }
@@ -55,6 +57,8 @@ public class FinalDoorScript : MonoBehaviour
         {
             GameManager.Instance.CompleteLap();
             LapText.text = $"{GameManager.Instance.GetLap()}/{LapsToWin}";
+
+            Player.SetMaxSpeed(Player.GetMaxSpeed() + LapSpeedIncrease);
 
             if (GameManager.Instance.GetLap() >= LapsToWin)
             {
@@ -69,5 +73,6 @@ public class FinalDoorScript : MonoBehaviour
         winTimer = 0.0f;
         Monster.enabled = false;
         Player.enabled = false;
+        GameManager.Instance.SetPaused(true);
     }
 }

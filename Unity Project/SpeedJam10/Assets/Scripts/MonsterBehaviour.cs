@@ -9,6 +9,7 @@ public class MonsterBehaviour : MonoBehaviour
     public float GameOverLocalYThreshold = -0.7f;
     public float DefaultY = -0.9f;
 
+    public AudioPlayer DeadPlayer = null;
     public float DeadYMax = 0.5f;
     public float DeadSpeed = 5.0f;
 
@@ -66,6 +67,7 @@ public class MonsterBehaviour : MonoBehaviour
             Respawn.StartRespawn(true);
             fading = false;
             dead = true;
+            DeadPlayer.PlayAudio();
         }
 
         transform.localPosition = localPos;

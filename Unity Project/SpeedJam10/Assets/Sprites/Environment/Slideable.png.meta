@@ -47,12 +47,6 @@ TextureImporter:
   - first:
       213: -4438798476559791167
     second: Slideable_14
-  - first:
-      213: 2156316804249385045
-    second: Slideable_15
-  - first:
-      213: 7004344107781523538
-    second: Slideable_16
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -94,7 +88,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -165,9 +159,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 727
+        y: 756
         width: 3442
-        height: 2163
+        height: 2134
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -490,55 +484,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Slideable_15
-      rect:
-        serializedVersion: 2
-        x: 487
-        y: 0
-        width: 2312
-        height: 362
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5587d7475b6cced10800000000000000
-      internalID: 2156316804249385045
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Slideable_16
-      rect:
-        serializedVersion: 2
-        x: 1445
-        y: 333
-        width: 418
-        height: 81
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2580becfadd643160800000000000000
-      internalID: 7004344107781523538
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -555,8 +505,6 @@ TextureImporter:
       Slideable_12: -8161325259855679891
       Slideable_13: 4950320029765046188
       Slideable_14: -4438798476559791167
-      Slideable_15: 2156316804249385045
-      Slideable_16: 7004344107781523538
       Slideable_2: -689016851822976941
       Slideable_3: -4347681413753691599
       Slideable_4: 8320319400230949625

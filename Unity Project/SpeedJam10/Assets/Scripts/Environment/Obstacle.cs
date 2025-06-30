@@ -12,7 +12,6 @@ public class Obstacle : MonoBehaviour
     // -1 means always active
     public int ActiveLap = -1;
 
-    float progress = 0.0f;
     bool currentlyActive = false;
     SpriteRenderer sprite;
     Collider coll;

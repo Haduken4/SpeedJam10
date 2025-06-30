@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 
     int currLap = 0;
     float gameTimer = 0.0f;
+    float startTimer = 3.0f;
 
     bool paused = false;
     bool gameStarted = false;
@@ -34,6 +35,12 @@ public class GameManager : MonoBehaviour
     {
         if (paused || !gameStarted)
         {
+            return;
+        }
+
+        if (startTimer > 0.0f)
+        {
+            startTimer -= Time.deltaTime;
             return;
         }
 
