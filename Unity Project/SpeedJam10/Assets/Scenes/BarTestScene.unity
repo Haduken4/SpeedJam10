@@ -265,9 +265,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dae00460613a5a4e83ccb421ade7965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 1
-  LaneWidth: 1
-  CurrentLane: 1
+  MaxSpeed: 3
+  StartSpeed: 2
+  Acceleration: 5
+  XSpeed: 3
+  XBoundary: 1
   SplinePositionOffset:
     x: 0
     y: 0.5
@@ -275,7 +277,7 @@ MonoBehaviour:
   JumpStrength: 5
   GravityStrength: -9.81
   SlideLength: 1
-  slideTimer: 0
+  SlideCooldown: 0.2
   PathSpline: {fileID: 2010417103}
 --- !u!114 &23175104
 MonoBehaviour:
@@ -691,6 +693,8 @@ GameObject:
   m_Component:
   - component: {fileID: 945480995}
   - component: {fileID: 945480994}
+  - component: {fileID: 945480997}
+  - component: {fileID: 945480996}
   m_Layer: 0
   m_Name: Walls 1_0
   m_TagString: Untagged
@@ -762,12 +766,50 @@ Transform:
   m_GameObject: {fileID: 945480993}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.275, y: 0.39772642, z: 8.962054}
+  m_LocalPosition: {x: -18.275, y: 0.8, z: 8.962054}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &945480996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945480993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d37d10bbb361b434bab82f7cd79011ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyPath: {fileID: 2010417103}
+  StartFromWorldPos: 1
+  MoveSpeed: 0
+  PathOffset: {x: 0, y: 0.5, z: 0}
+  ActiveLap: -1
+--- !u!65 &945480997
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945480993}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.89868104, y: 1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1929191829
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,6 +907,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2010417104}
   - component: {fileID: 2010417103}
+  - component: {fileID: 2010417105}
   m_Layer: 0
   m_Name: PlayerRunSpline
   m_TagString: Untagged
@@ -1007,6 +1050,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2010417105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010417102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b74686beb0670a4ea61325c0acf4411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Container: {fileID: 2010417103}
+  m_ItemsToInstantiate:
+  - prefab: {fileID: 0}
+    Prefab: {fileID: 919132149155446097, guid: 816f2d4dd50f1c94eb7c5eb85c02f5b3, type: 3}
+    probability: 0
+    Probability: 0
+  m_Method: 1
+  m_Space: 0
+  m_Spacing: {x: 2, y: 2}
+  m_Up: 1
+  m_Forward: 2
+  m_PositionOffset:
+    setup: 1
+    min: {x: 0, y: -0.001, z: 0}
+    max: {x: 0, y: 0.001, z: 0}
+    randomX: 0
+    randomY: 1
+    randomZ: 0
+    space: 0
+  m_RotationOffset:
+    setup: 0
+    min: {x: 0, y: 0, z: 0}
+    max: {x: 0, y: 0, z: 0}
+    randomX: 0
+    randomY: 0
+    randomZ: 0
+    space: 0
+  m_ScaleOffset:
+    setup: 1
+    min: {x: 15, y: 4, z: 15}
+    max: {x: 15, y: 10, z: 15}
+    randomX: 0
+    randomY: 0
+    randomZ: 0
+    space: 0
+  m_DeprecatedInstances: []
+  m_AutoRefresh: 1
+  m_Seed: -46996
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

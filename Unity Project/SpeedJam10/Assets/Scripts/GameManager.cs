@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UpdateObstacles();
+        gameStarted = true;
     }
 
     // Update is called once per frame
@@ -47,6 +48,11 @@ public class GameManager : MonoBehaviour
     {
         ++currLap;
         UpdateObstacles();
+    }
+
+    public void SetPaused(bool newPaused)
+    {
+        paused = newPaused;
     }
 
     void UpdateObstacles()
