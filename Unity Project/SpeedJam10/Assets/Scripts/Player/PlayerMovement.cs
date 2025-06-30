@@ -1,14 +1,19 @@
 ﻿using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
+using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    public float Speed = 10f;
-    public float LaneWidth = 2f;
-    public int CurrentLane = 1; // 0=left, 1=center, 2=right
+    public float MaxSpeed = 10f;
+    public float StartSpeed = 10f;
+    public float Acceleration = 5.0f;
+    public float XSpeed = 5.0f;
+    public float XBoundary = 1.0f;
     public float3 SplinePositionOffset = Vector3.zero;
+    float currMaxSpeed = 10.0f;
+    float currSpeed = 0.0f;
 
     public float JumpStrength = 9.0f;
     public float GravityStrength = -9.81f;
@@ -24,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public SplineContainer PathSpline;
 
     private float splinePosition = 0f; // 0 to 1 along the spline
-    private float laneOffset = 0f;
+    private float xOffset = 0f;
 
 
     private Animator anim;
@@ -49,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         playerCollision = GetComponent<PlayerCollision>();
+        currMaxSpeed = MaxSpeed;
+        currSpeed = StartSpeed; 
     }
 
     void Update()
@@ -87,11 +94,6 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleJumping()
     {
-        //if (anim)
-        //{
-        //    anim.SetFloat("Blend", IsJumping() ? 1.0f : 0.0f);
-        //}
-
         if (jumpOffset == 0.0f && yVel == 0.0f)
         {
             if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && !IsSliding())
@@ -117,9 +119,11 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveAlongSpline()
     {
+        currSpeed = Mathf.Min(currSpeed + (Acceleration * Time.deltaTime), currMaxSpeed);
+
         // Move forward along the spline
         float splineLength = PathSpline.CalculateLength();
-        splinePosition += (Speed / splineLength) * Time.deltaTime;
+        splinePosition += (currSpeed / splineLength) * Time.deltaTime;
 
         // Keep position in 0-1 range (loops automatically)
         splinePosition = splinePosition % 1f;
@@ -127,18 +131,14 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleLaneSwitching()
     {
-        if (Input.GetKeyDown(KeyCode.A) && CurrentLane > 0)
+        if (Input.GetKey(KeyCode.A) && xOffset > -XBoundary)
         {
-            CurrentLane--;
+            xOffset = Mathf.Max(xOffset - (XSpeed * Time.deltaTime), -XBoundary);
         }
-        else if (Input.GetKeyDown(KeyCode.D) && CurrentLane < 2)
+        else if (Input.GetKey(KeyCode.D) && xOffset < XBoundary)
         {
-            CurrentLane++;
+            xOffset = Mathf.Min(xOffset + (XSpeed * Time.deltaTime), XBoundary);
         }
-
-        // Smoothly interpolate to target lane
-        float targetOffset = (CurrentLane - 1) * LaneWidth;
-        laneOffset = Mathf.Lerp(laneOffset, targetOffset, Time.deltaTime * 8f);
     }
 
     void UpdatePosition()
@@ -150,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
         float3 right = math.normalize(math.cross(up, forward));
 
         // Apply lane offset
-        position += right * laneOffset;
+        position += right * xOffset;
 
         position += SplinePositionOffset;
 
@@ -159,5 +159,14 @@ public class PlayerMovement : MonoBehaviour
         // Update transform
         transform.position = position;
         transform.rotation = Quaternion.LookRotation(forward, up);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Obstacle>())
+        {
+            anim.SetTrigger("Stumble");
+            currSpeed = 0.0f;
+        }
     }
 }
