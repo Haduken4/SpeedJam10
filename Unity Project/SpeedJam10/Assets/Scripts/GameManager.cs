@@ -24,8 +24,9 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        UpdateObstacles();
+        currLap = 0;
         gameStarted = true;
+        UpdateObstacles();
     }
 
     // Update is called once per frame
@@ -44,6 +45,11 @@ public class GameManager : MonoBehaviour
         return gameTimer;
     }
 
+    public int GetLap()
+    {
+        return currLap;
+    }
+
     public void CompleteLap()
     {
         ++currLap;
@@ -57,10 +63,10 @@ public class GameManager : MonoBehaviour
 
     void UpdateObstacles()
     {
-        Obstacle[] obstacles = FindObjectsByType<Obstacle>(FindObjectsSortMode.None);
-        foreach (Obstacle obstacle in obstacles)
+        LapObstacleEnabler[] obstacles = FindObjectsByType<LapObstacleEnabler>(FindObjectsSortMode.None);
+        foreach (LapObstacleEnabler obstacle in obstacles)
         {
-            obstacle.StartNewLap(currLap);
+            obstacle.OnNewLap(currLap);
         }
     }
 }

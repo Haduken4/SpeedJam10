@@ -22,7 +22,7 @@ public class Obstacle : MonoBehaviour
     {
         sprite = GetComponent<SpriteRenderer>();
         coll = GetComponent<Collider>();
-        StartNewLap(-1);
+        //StartNewLap(-1);
     }
 
     void Start()

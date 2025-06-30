@@ -36,6 +36,11 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private PlayerCollision playerCollision;
 
+    public void SetSplinePosition(float newPos)
+    {
+        splinePosition = newPos;
+    }
+
     public float GetSplinePosition()
     {
         return splinePosition;
@@ -59,6 +64,11 @@ public class PlayerMovement : MonoBehaviour
     public void SetMaxSpeed(float newMaxSpeed)
     {
         currMaxSpeed = newMaxSpeed;
+    }
+
+    public float GetCurrSpeed()
+    {
+        return currSpeed;
     }
 
     private void Awake()
